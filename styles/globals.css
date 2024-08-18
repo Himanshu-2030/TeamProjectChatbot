@@ -1,0 +1,9 @@
+/* Global styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc;
+  color: #333;
+}
+
+/* You can also include other global styles here */
