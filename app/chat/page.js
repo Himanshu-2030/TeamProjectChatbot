@@ -6,7 +6,9 @@ import GoogleSignIn from '../components/googleSignIn';
 import axios from 'axios';
 import { collection, doc, query, orderBy, onSnapshot, addDoc, deleteDoc, getDocs } from 'firebase/firestore';
 import styles from '../../styles/ChatPage.module.css'; // Import the CSS module
-import '../../styles/globals.css'
+import '../../styles/globals.css';
+import ChatShapes from '../components/chatShapes'
+
 const ChatPage = () => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
@@ -87,7 +89,9 @@ const ChatPage = () => {
       {!user ? (
         <GoogleSignIn />
       ) : (
+        
         <div className={styles.chatContainer}>
+          <ChatShapes />
           <div className={styles.header}>
             <div className={styles.welcome}>Welcome, {user.displayName}</div>
             <div className={styles.options}>
@@ -111,7 +115,7 @@ const ChatPage = () => {
               placeholder="Type your message..."
             />
             <button onClick={handleSendMessage} className={styles.sendButton}>
-              <img src="/s" alt="Send" className={styles.sendIcon} />
+              <img src="/send-icon.svg" alt="Send" className={styles.sendIcon} />
             </button>
           </div>
         </div>

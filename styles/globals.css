@@ -1,9 +1,13 @@
-/* Global styles */
-body {
+/* Reset default margin and padding */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+* {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f9fc;
-  color: #333;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* You can also include other global styles here */
+body {
+  background-color: #121212; /* Dark background */
+  color: #e0e0e0; /* Light text */
+  font-family:  "Montserrat", system-ui;
+}
