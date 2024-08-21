@@ -1,19 +1,20 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'; // Import useRouter
 import { auth, firestore } from '../lib/firebase';
 import GoogleSignIn from '../components/googleSignIn';
 import axios from 'axios';
 import { collection, doc, query, orderBy, onSnapshot, addDoc, deleteDoc, getDocs } from 'firebase/firestore';
-import styles from '../../styles/ChatPage.module.css'; // Import the CSS module
+import styles from '../../styles/ChatPage.module.css';
 import '../../styles/globals.css';
-import ChatShapes from '../components/chatShapes'
+import ChatShapes from '../components/chatShapes';
 
 const ChatPage = () => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [chat, setChat] = useState([]);
+  const router = useRouter(); // Initialize the router
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(setUser);
@@ -34,22 +35,36 @@ const ChatPage = () => {
   const handleSendMessage = async () => {
     if (message) {
       const messagesRef = collection(doc(firestore, 'users', user.uid), 'messages');
-      await addDoc(messagesRef, {
+      const newMessage = {
         text: message,
-        createdAt: new Date(),
-      });
+        createdAt: new Date(), // Consider using serverTimestamp()
+        role: 'user',
+      };
+
+      await addDoc(messagesRef, newMessage);
       setMessage('');
 
-      // Chatbot functionality
-      const newChat = [...chat, { role: "user", content: message }];
-      setChat(newChat);
+      const newChat = [...messages, newMessage];
+      setMessages(newChat);
 
       try {
         const response = await axios.post('/api/chat', { message });
-        setChat([...newChat, { role: "assistant", content: response.data.response }]);
+        const botMessage = {
+          text: response.data.response,
+          createdAt: new Date(),
+          role: 'assistant',
+        };
+        setMessages([...newChat, botMessage]);
+        await addDoc(messagesRef, botMessage);
       } catch (error) {
         console.error("Error communicating with the API:", error);
-        setChat([...newChat, { role: "assistant", content: "Error communicating with the API." }]);
+        const errorMessage = {
+          text: "Error communicating with the API.",
+          createdAt: new Date(),
+          role: 'assistant',
+        };
+        setMessages([...newChat, errorMessage]);
+        await addDoc(messagesRef, errorMessage);
       }
     }
   };
@@ -64,14 +79,14 @@ const ChatPage = () => {
       const messagesRef = collection(doc(firestore, 'users', user.uid), 'messages');
       const snapshot = await getDocs(messagesRef);
       snapshot.forEach(doc => deleteDoc(doc.ref)); // Delete all messages
-      setMessages([]);
-      setChat([]);
+      setMessages([]); // Clear local state
     }
   };
 
   const handleLogout = async () => {
     try {
       await auth.signOut();
+      router.push('/'); // Redirect to the landing page after logout
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -89,7 +104,6 @@ const ChatPage = () => {
       {!user ? (
         <GoogleSignIn />
       ) : (
-        
         <div className={styles.chatContainer}>
           <ChatShapes />
           <div className={styles.header}>
@@ -100,9 +114,9 @@ const ChatPage = () => {
             </div>
           </div>
           <div className={styles.chatBox}>
-            {chat.map((msg, index) => (
+            {messages.map((msg, index) => (
               <div key={index} className={`${styles.message} ${msg.role === 'user' ? styles.userMessage : styles.botMessage}`}>
-                <strong>{msg.role === 'user' ? 'You' : 'Bot'}:</strong> {msg.content}
+                <strong>{msg.role === 'user' ? 'You' : 'Bot'}:</strong> {msg.text}
               </div>
             ))}
           </div>
