@@ -1,0 +1,64 @@
+/* Existing Styles */
+.heroShape {
+  position: absolute;
+  width: 25vw; /* Width reduced */
+  height: 35vw; /* Height reduced */
+  left: 0;
+  top: 15vh; /* Adjusted vertical position */
+}
+
+.hero1 {
+  background-color: #1efe0a; /* Bright green */
+  height: 100%;
+  width: 100%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  filter: blur(8px); /* Reduced blur */
+  position: absolute;
+}
+
+.hero2 {
+  background: linear-gradient(#1efe0a, #1efe0a); /* Green gradient */
+  height: 25vw; /* Size reduced */
+  width: 25vw; /* Size reduced */
+  border-radius: 50%;
+  position: absolute;
+  animation-name: anime2;
+  animation-duration: 6s; /* Adjusted duration */
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  filter: blur(12px); /* Reduced blur */
+}
+
+.hero3 {
+  background: linear-gradient(#1efe0a, #1efe0a); /* Green gradient */
+  height: 20vw; /* Size adjusted */
+  width: 10vw; /* Size adjusted */
+  border-radius: 50%;
+  position: absolute;
+  filter: blur(12px); /* Reduced blur */
+  animation-name: anime1;
+  animation-duration: 6s; /* Adjusted duration */
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes anime1 {
+  from {
+    transform: translate(-10%, 10%); /* Enhanced left and upward movement */
+  }
+  to {
+    transform: translate(10%, -10%); /* Enhanced left and downward movement */
+  }
+}
+
+@keyframes anime2 {
+  from {
+    transform: translate(-10%, -10%); /* Enhanced left and upward movement */
+  }
+  to {
+    transform: translate(15%, 20%); /* Enhanced left and downward movement */
+  }
+}
