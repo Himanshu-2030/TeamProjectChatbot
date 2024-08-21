@@ -1,64 +1,63 @@
 .heroShape {
-    position: absolute;
-    width: 30vw; /* Reduced width */
-    height: 40vw; /* Reduced height */
-    right: 0;
-    bottom: 10vh; /* Adjusted vertical position */
+  position: absolute;
+  width: 30vw; /* Width reduced */
+  height: 40vw; /* Height reduced */
+  right: 0;
+  bottom: 10vh; /* Adjusted vertical position */
+}
+
+.hero1 {
+  background-color: #FE320A; /* Bright red */
+  height: 100%;
+  width: 100%;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  filter: blur(10px); /* Reduced blur */
+  position: absolute;
+}
+
+.hero2 {
+  background: linear-gradient(#FE320A, #fe3f0a); /* Red gradient */
+  height: 30vw; /* Size reduced */
+  width: 30vw; /* Size reduced */
+  border-radius: 50%;
+  position: absolute;
+  animation-name: anime2;
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  filter: blur(15px); /* Reduced blur */
+}
+
+.hero3 {
+  background: linear-gradient(#FE320A, #fe3f0a); /* Red gradient */
+  height: 30vw; /* Size adjusted */
+  width: 15vw; /* Size adjusted */
+  border-radius: 50%;
+  position: absolute;
+  filter: blur(15px); /* Reduced blur */
+  animation-name: anime1;
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes anime1 {
+  from {
+    transform: translate(15%, -5%); /* Reduced left and upward movement */
   }
-  
-  .hero1 {
-    background-color: #FE320A;
-    height: 100%;
-    width: 100%;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-    filter: blur(10px);
-    position: absolute;
+  to {
+    transform: translate(-5%, 10%); /* Reduced left and downward movement */
   }
-  
-  .hero2 {
-    background: linear-gradient(#FE320A, #fe3f0a);
-    height: 30vw; /* Reduced size */
-    width: 30vw; /* Reduced size */
-    border-radius: 50%;
-    position: absolute;
-    animation-name: anime2;
-    animation-duration: 6s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    filter: blur(25px);
+}
+
+@keyframes anime2 {
+  from {
+    transform: translate(-5%, -5%); /* Reduced left and upward movement */
   }
-  
-  .hero3 {
-    background: linear-gradient(#FE320A, #fe3f0a);
-    height: 40vw; /* Reduced size */
-    width: 20vw; /* Reduced size */
-    border-radius: 50%;
-    position: absolute;
-    filter: blur(25px);
-    animation-name: anime1;
-    animation-duration: 6s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  to {
+    transform: translate(-30%, 10%); /* Reduced left and downward movement */
   }
-  
-  @keyframes anime1 {
-    from {
-      transform: translate(30%, -3%); /* Moved further to the left from 45% to 30% */
-    }
-    to {
-      transform: translate(10%, 20%); /* Moved further to the left from 50% to 10% */
-    }
-  }
-  
-  @keyframes anime2 {
-    from {
-      transform: translate(-10%, -5%); /* Moved further to the left from 0% to -10% */
-    }
-    to {
-      transform: translate(-60%, 30%); /* Moved further to the left from -35% to -60% */
-    }
-  }
-  
+}
