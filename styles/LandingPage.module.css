@@ -1,53 +1,98 @@
-
-
+/* Container Styles */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw; /* Ensure full viewport width */
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  text-align: center; /* Center text inside the container */
 }
 
+/* Title Styles */
 .title {
-  font-size: 2.5rem;
-  color: #ffffff;
-  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+  font-size: 2.5rem; /* Default font size for larger screens */
+  color: #ffffff; /* White text color */
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5); /* Subtle text shadow for better readability */
+  margin-bottom: 20px; /* Space below the title */
 }
 
+/* Description Styles */
 .description {
-  font-size: 1.2rem;
-  color: #b0b0b0;
-  margin-bottom: 30px;
+  font-size: 1.2rem; /* Default font size for larger screens */
+  color: #b0b0b0; /* Light gray text color */
+  margin-bottom: 30px; /* Space below the description */
 }
 
+/* Button Styles */
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  background-color: #ffffff;
-  color: #757575;
+  padding: 12px 24px; /* Padding around the button text */
+  background-color: #ffffff; /* White background color */
+  color: #757575; /* Gray text color */
   border: none; /* Remove default border */
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+  text-decoration: none; /* Remove underline for links */
 }
 
+/* Button Hover Styles */
 .button:hover {
-  background-color: #f1f3f4;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transform: scale(1.02);
+  background-color: #f1f3f4; /* Light gray background on hover */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow on hover */
+  transform: scale(1.02); /* Slightly enlarge the button on hover */
 }
 
+/* Button Active Styles */
 .button:active {
-  background-color: #eeeeee;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-  transform: scale(0.98);
+  background-color: #eeeeee; /* Even lighter gray when clicked */
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2); /* Smaller shadow when clicked */
+  transform: scale(0.98); /* Slightly reduce the button size when clicked */
 }
 
+/* Icon Styles */
 .icon img {
-  width: 24px; /* Adjust size */
-  height: 24px; /* Adjust size */
-  margin-right: 8px; /* Space between icon and text */
+  width: 24px; /* Icon width */
+  height: 24px; /* Icon height */
+  margin-right: 8px; /* Space between the icon and the text */
+}
+
+/* Media Queries for Smaller Screens */
+
+/* For devices with a max width of 768px (tablets and smaller devices) */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem; /* Reduce font size */
+  }
+
+  .description {
+    font-size: 1rem; /* Reduce font size */
+  }
+
+  .button {
+    padding: 10px 20px; /* Adjust padding */
+  }
+}
+
+/* For devices with a max width of 480px (mobile devices) */
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem; /* Further reduce font size */
+  }
+
+  .description {
+    font-size: 0.9rem; /* Further reduce font size */
+  }
+
+  .button {
+    padding: 8px 16px; /* Adjust padding */
+  }
+
+  .icon img {
+    width: 20px; /* Adjust icon size */
+    height: 20px; /* Adjust icon size */
+  }
 }
